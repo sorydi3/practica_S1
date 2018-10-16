@@ -15,15 +15,21 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="pch.h">
+    <ClInclude Include="Refugi.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Cim.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="pch.cpp">
+    <ClCompile Include="muntanyisme.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="muntanyisme.cpp">
+    <ClCompile Include="Refugi.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Cim.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

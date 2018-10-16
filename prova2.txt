@@ -1,0 +1,60 @@
+refugi
+Sant Jordi
+1565
+42.2941
+1.8050
+619 239 860
+refugi
+Prat d'Aguilo
+2020
+42.2972
+1.7141
+639 714 087
+refugi
+Lluis Estasen
+1647
+42.2453
+1.7162
+608 315 312
+refugi
+Niu d'Aliga
+2531
+42.3195
+1.89331
+?
+refugi
+Cortals de l'Ingla
+1605
+42.309587
+1.790441
+605 44 97 71
+cim
+Comabona
+2548
+42.283611
+1.726389
+cim
+Puigllancada
+2409
+42.3001
+1.9355
+cim
+Pedraforca
+2506
+42.238900
+1.706400 
+cim
+Tossa d'Alp
+2587
+42.321672
+1.893819
+cim
+Penyes Altes de Moixero
+2276
+42.306389
+1.8425
+*
+Lluis Estasen
+Niu d'Aliga
+Restanca
+*

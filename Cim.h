@@ -1,24 +1,22 @@
 #pragma once
-#include <string>
+#include<string>
 #include<iostream>
 using namespace std;
-class Refugi
+class Cim
 {
 public:
-	Refugi();
-	Refugi(std::string nom, unsigned alcada, float longi, float lat, string telef);
+	Cim();
+	Cim(std::string nom, unsigned alcada, float longi, float lat);
 	void mostrar()const;
 	void llegir();
-	bool operator<(const Refugi & o)const;
 	float getLong()const;
 	float getLat()const;
 	string getNom()const;
-	~Refugi();
+	~Cim();
 private:
 	std::string _nom;
 	unsigned _alcada;
 	float _long;
 	float _lat;
-	string _tlf;
 };
 

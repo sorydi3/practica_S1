@@ -1,4 +1,3 @@
-#include "pch.h"
 #include "Refugi.h"
 Refugi::Refugi()
 {
@@ -6,10 +5,10 @@ Refugi::Refugi()
 	_long = 0.0;
 	_lat = 0.0;
 	_alcada = 0;
-	_tlf = 0;
+	_tlf = "";
 }
 
-Refugi::Refugi(std::string nom, unsigned alcada, double longi, double lat, unsigned telef)
+Refugi::Refugi(std::string nom, unsigned alcada, float longi,float lat, string telef)
 {
 	_nom = nom;
 	_long = longi;
@@ -20,7 +19,8 @@ Refugi::Refugi(std::string nom, unsigned alcada, double longi, double lat, unsig
 
 void Refugi::mostrar() const
 {
-	std::cout << _nom << ": (" << _alcada << ")" << "  (" << _long << " " << _lat << ") Tel: " << _tlf << endl;
+	
+	std::cout << _nom << ": (" << _alcada << "m)" << "  ( " << _long << " , " << _lat << " ) Tel: " << _tlf << endl;
 }
 
 void Refugi::llegir()
@@ -30,7 +30,28 @@ void Refugi::llegir()
 	cin >> _alcada;
 	cin >> _long;
 	cin >> _lat;
-	cin >> _tlf;
+	std::cin.ignore(100, '\n');
+	getline(cin,_tlf);
+}
+
+bool Refugi::operator<(const Refugi & o) const
+{
+	return _alcada<o._alcada;
+}
+
+float Refugi::getLong() const
+{
+	return _long;
+}
+
+float Refugi::getLat() const
+{
+	return _lat;
+}
+
+string Refugi::getNom() const
+{
+	return _nom;
 }
 
 
