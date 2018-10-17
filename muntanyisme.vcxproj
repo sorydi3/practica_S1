@@ -152,10 +152,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Cim.h" />
+    <ClInclude Include="Comarca.h" />
+    <ClInclude Include="Coordenada.h" />
     <ClInclude Include="Refugi.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Cim.cpp" />
+    <ClCompile Include="Comarca.cpp" />
+    <ClCompile Include="Coordenada.cpp" />
     <ClCompile Include="muntanyisme.cpp" />
     <ClCompile Include="Refugi.cpp" />
   </ItemGroup>

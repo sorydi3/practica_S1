@@ -21,6 +21,12 @@
     <ClInclude Include="Cim.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Coordenada.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Comarca.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="muntanyisme.cpp">
@@ -30,6 +36,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Cim.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Coordenada.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Comarca.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
