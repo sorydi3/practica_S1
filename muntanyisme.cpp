@@ -72,12 +72,11 @@ void distanciaCims(list<Cim>list, Refugi refugi) {
 	}
 }
 
-unsigned LlegeixCodi(vector<Comarca> comarques) {
+unsigned LlegeixCodi(vector<Comarca> comarques,unsigned &codi) {
 	//pre:--
 	//post:retorna un codi existen dintre del vector comarques
 	cout << "Entra el codi" << endl;
 	vector<Comarca>::iterator vIt;
-	unsigned codi;
 	cin >> codi;
 	Comarca comarca;
 	comarca.afegeixCodi(codi);
@@ -106,7 +105,15 @@ int main()
 	Comarca comarca;
 	while (comarca.llegirComarca())
 	{
-		if (vComarques.capacity() <= comarca.getCodi())vComarques.resize(comarca.getCodi()+1);
+		//cout << "capacity before resize" << vComarques.capacity() << endl;
+		//int capacity1 = vComarques.capacity();
+		if (comarca.getCodi() >= vComarques.size()) {
+			//vComarques.reserve(comarca.getCodi()*2);
+			vComarques.resize(comarca.getCodi() + 1);
+			//cout << "vector resized" << endl;
+		};
+		//cout <<"capacity after resize"<< vComarques.capacity() << endl;
+		int capacity2 = vComarques.capacity();
 	     vComarques[comarca.getCodi()] = comarca;
 	}
 	for (auto l : vComarques) {
@@ -126,21 +133,23 @@ int main()
 	list<Cim>:: iterator itCim;
 	string opcio;
 	std::cin >> opcio;
+	unsigned codi;
 	while (opcio!="*")
 	{
 		if (opcio=="cim")
 		{
+			
 			Cim cim;
 			llegir(cim);
-			while (LlegeixCodi(vComarques) != 0)
+			while (LlegeixCodi(vComarques,codi) != 0)
 			{
-				cim.afegeixCodi(LlegeixCodi(vComarques));
+				cim.afegeixCodi(codi);
 			}
 			listCims.push_front(cim);
 		}else{
 			Refugi refugi;
 			llegir(refugi);
-			unsigned codi = LlegeixCodi(vComarques);
+			LlegeixCodi(vComarques,codi);
 			refugi.afegeixCodi(codi);
 			listRefugis.push_front(refugi);
 		}

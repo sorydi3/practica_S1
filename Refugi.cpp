@@ -35,7 +35,7 @@ void Refugi::llegir()
 	_coordenades.llegirCoordenada();
 	std::cin.ignore(100, '\n');
 	getline(cin,_tlf);
-	cin >> _codi;
+	//cin >> _codi;
 }
 
 bool Refugi::operator<(const Refugi & o) const
