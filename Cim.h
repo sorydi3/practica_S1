@@ -4,6 +4,7 @@
 //Practica Nº:S1
 #include<string>
 #include<iostream>
+#include"Coordenada.h"
 #include"Comarca.h"
 #include<vector>
 #include<list>
@@ -19,15 +20,14 @@ public:
 	bool operator<(const Cim & o)const;//pre:--;post:retorna cert si this es menor que o
 	void llegir();//pre:--;//post:llegeix info per *this
 	void afegeixCodi(unsigned codi);//pre:--,post:ha afegit un codi a la llista de codis
-	float getLong()const;//pre:--;post:retorna la longitud
+	Coordenada getCoordenada()const;//pre:--;post:retorna la longitud
 	float getLat()const;//pre:--;post:retorna la latitud
 	string getNom()const;//pre:--;post:retorna el nom
 	~Cim();//destructor
 private:
 	std::string _nom;
 	unsigned _alcada;
-	float _long;
-	float _lat;
+	Coordenada _coordenada;
 	list<int> _comarques;
 };
 

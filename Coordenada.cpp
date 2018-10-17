@@ -7,7 +7,7 @@ void Coordenada::llegirCoordenada()
 	cin >> _lat;
 }
 
-void Coordenada::mostrarCordenada()
+void Coordenada::mostrarCordenada()const
 {
 	std::cout<< "  ( " << _longi << " , " << _lat << " )";
 }
@@ -17,7 +17,7 @@ Coordenada::~Coordenada()
 {
 }
 
-double Coordenada::operator-(Coordenada & o)
+double Coordenada::operator-(const Coordenada & o)
 {
 	return distance(o._longi,o._lat);
 }

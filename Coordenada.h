@@ -8,8 +8,8 @@ class Coordenada
 public:
 	Coordenada();//constructor
 	void llegirCoordenada();//pre:-- ,post:llegeix una coordenda
-	void mostrarCordenada();//pre:cert, post:mostra la coordenada concatenat en un string 
-	double operator -(Coordenada & o);//pre:coordenada ,post:fa la diferencia entre dues coordenades
+	void mostrarCordenada()const;//pre:cert, post:mostra la coordenada concatenat en un string 
+	double operator -(const Coordenada & o);//pre:coordenada ,post:fa la diferencia entre dues coordenades
 	double distance(float lat, float longi)const; //pre:cert,post:retorna la distancia
 	~Coordenada();//destructor
 private:

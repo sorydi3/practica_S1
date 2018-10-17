@@ -5,16 +5,12 @@
 Cim::Cim()
 {
 	_nom = "";
-	_long = 0.0;
-	_lat = 0.0;
 	_alcada = 0;
 }
 
 Cim::Cim(std::string nom, unsigned alcada, float longi, float lat)
 {
 	_nom = nom;
-	_long = longi;
-	_lat = lat;
 	_alcada = alcada;
 }
 
@@ -22,12 +18,15 @@ void Cim::mostrar() const
 {
 	//) comarca: 14 15 (Berguedà,Cerdanya)
 
-	cout << _nom << ": (" << _alcada << "m)" << "  (" << _long << " " << _lat << ")" << endl;
+	cout << _nom << ": (" << _alcada << "m)";
+	_coordenada.mostrarCordenada();
+	cout << endl;
 }
 
 void Cim::mostrar(const vector<Comarca> comarques) const
 {
-	cout << _nom << ": (" << _alcada << "m)" << "  (" << _long << " " << _lat << ")";
+	cout << _nom << ": (" << _alcada << "m)";
+	_coordenada.mostrarCordenada();
 	for (auto l : _comarques) {
 		cout << l << " ";
 	}
@@ -48,8 +47,7 @@ void Cim::llegir()
 	std::cin.ignore(100, '\n');
 	getline(cin, _nom);
 	cin >> _alcada;
-	cin >> _long;
-	cin >> _lat;
+	_coordenada.llegirCoordenada();
 
 }
 
@@ -59,14 +57,9 @@ void Cim::afegeixCodi(unsigned codi)
 	cout << "afegit correctament a la llista" << endl;
 }
 
-float Cim::getLong() const
+Coordenada Cim::getCoordenada() const
 {
-	return _long;
-}
-
-float Cim::getLat() const
-{
-	return _lat;
+	return _coordenada;
 }
 
 string Cim::getNom() const

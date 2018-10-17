@@ -5,8 +5,6 @@
 Refugi::Refugi()
 {
 	_nom = "";
-	_long = 0.0;
-	_lat = 0.0;
 	_alcada = 0;
 	_tlf = "";
 	_codi = 0;
@@ -15,8 +13,6 @@ Refugi::Refugi()
 Refugi::Refugi(std::string nom, unsigned alcada, float longi,float lat, string telef,unsigned codi)
 {
 	_nom = nom;
-	_long = longi;
-	_lat = lat;
 	_alcada =alcada;
 	_tlf = telef;
 	_codi = codi;
@@ -26,8 +22,9 @@ void Refugi::mostrar(const vector<Comarca> comarques) const
 {
 	//) Tel: 619 239 860 Comarca: 14(Berguedà)
 
-	std::cout << _nom << ": (" << _alcada << "m)" << "  ( " << _long << " , " << _lat << " ) Tel: " <<
-		_tlf <<"  Comarca: "<<_codi<<"( "<<comarques[_codi].getNom()<<")"<< endl;
+	std::cout << _nom << ": (" << _alcada << "m)";
+	_coordenades.mostrarCordenada();
+		cout<< " Tel: " <<_tlf <<"  Comarca: "<<_codi<<"( "<<comarques[_codi].getNom()<<")"<< endl;
 }
 
 void Refugi::llegir()
@@ -35,8 +32,7 @@ void Refugi::llegir()
 	std::cin.ignore(100, '\n');
 	getline(cin,_nom);
 	cin >> _alcada;
-	cin >> _long;
-	cin >> _lat;
+	_coordenades.llegirCoordenada();
 	std::cin.ignore(100, '\n');
 	getline(cin,_tlf);
 	cin >> _codi;
@@ -47,19 +43,15 @@ bool Refugi::operator<(const Refugi & o) const
 	return _alcada<o._alcada;
 }
 
-float Refugi::getLong() const
-{
-	return _long;
-}
 
 unsigned Refugi::getAlcada() const
 {
 	return _alcada;
 }
 
-float Refugi::getLat() const
+Coordenada Refugi::getCoordenada() const
 {
-	return _lat;
+	return _coordenades;
 }
 
 unsigned Refugi::getCodi() const

@@ -30,8 +30,19 @@ void mostrar(T &list, G &it,H type,C comarques) {
 	for (it = list.begin(); it != list.end(); it++) {
 		type = *it;
 		type.mostrar(comarques);
+		
 	}
 }
+//pre:--
+//post:mostra info de totes les comarques
+template <typename T, typename G, typename H>
+void mostrar_c(T &list, G &it, H type) {
+	for (it = list.begin(); it != list.end(); it++) {
+		type = *it;
+	    type.mostrarComarca();
+	}
+}
+
 //pre:cert
 //post:retorna la distancia entre dues coordenades
 double distancia(float lon1,float lat1,float lon2 ,float lat2) {
@@ -57,8 +68,7 @@ Refugi cerca(string nom, bool &trobat, list<Refugi> refugis) {
 //post:mostra distància en línia recta a tots els cims que hi hagi a la llista de cims
 void distanciaCims(list<Cim>list, Refugi refugi) {
 	for (auto l : list) {
-		cout <<"                                 "<< l.getNom() << " a " << distancia(l.getLong(), l.getLat(),
-			refugi.getLong(), refugi.getLat()) << " metres" << endl;
+		cout <<"                                 "<< l.getNom() << " a " <<refugi.getCoordenada()-l.getCoordenada()<< " metres" << endl;
 	}
 }
 
@@ -76,7 +86,7 @@ unsigned LlegeixCodi(vector<Comarca> comarques) {
 	{
 		vIt = find(comarques.begin(), comarques.end(),comarca);
 		if (vIt != comarques.end())trobat = true;
-		else if (codi == 0)return 0;
+		else if (codi == 0)return 0;//termina bucle cim
 		else
 		{
 			cout << "Codi inexisten" << endl;
@@ -136,17 +146,18 @@ int main()
 		}
 		std::cin >> opcio;
 	}
+	    cout << "COMARQUES" << endl;
+		cout << "============\n";
+		Comarca cmrca;
+		mostrar_c(vComarques, vIt, cmrca);//mostra él vector de comarques
 		Cim cim;
 		Refugi refugi;
 		cout << "CIMS" << endl;
-		cout << endl;
 		cout << "============\n";
-		cout << endl;
 		listCims.sort();
 		mostrar(listCims, itCim, cim,vComarques);
 		cout << endl;
 		cout << "REFUGIS" << endl;
-		cout << endl;
 		cout << "============\n";
 		listRefugis.sort();
 		mostrar(listRefugis, itRef, refugi,vComarques);

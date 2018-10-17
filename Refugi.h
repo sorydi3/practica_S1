@@ -6,6 +6,7 @@
 #include<iostream>
 #include<vector>
 #include"Comarca.h"
+#include"Coordenada.h"
 using namespace std;
 class Refugi
 {
@@ -15,9 +16,8 @@ public:
 	void mostrar(const vector<Comarca> comarques)const;//pre:--,post:mostra info de *this
 	void llegir();//pre:--;//post:llegeix info per *this
 	bool operator<(const Refugi & o)const; // pre:--; post:retorna cert si this es menor que o
-	float getLong()const;//pre:--;post:retorna la longitud
+	Coordenada getCoordenada()const;//pre:--;post:retorna la longitud
 	unsigned getAlcada()const;//pre:--;post:retorna l´alcada
-	float getLat()const;//pre:--;post:retorna la latitud
 	unsigned getCodi()const;//pre:--,post:retorna el codi de la comarca
 	void afegeixCodi(unsigned codi);
 	string getNom()const;//pre:--;post:retorna el nom
@@ -25,8 +25,7 @@ public:
 private:
 	std::string _nom;
 	unsigned _alcada;
-	float _long;
-	float _lat;
+	Coordenada _coordenades;
 	string _tlf;
 	unsigned _codi;
 };
