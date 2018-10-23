@@ -4,16 +4,8 @@
 //Practica Nº:S1
 Comarca::Comarca():_nom(""),_codi(0),_capital("") {}
 
-bool Comarca::llegirComarca()
-{
-	cout << "llegin Comarca" << endl;
-	cin >> _codi;
-	if (_codi == 0)return false;
-	cin.ignore(100, '\n');
-	getline(cin, _nom);
-	getline(cin, _capital);
-	return true;
-}
+Comarca::Comarca(unsigned codi, string nom, string capital):_nom(nom),_codi(codi),_capital(capital){}
+
 
 void Comarca::mostrarComarca() const
 {

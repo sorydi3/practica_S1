@@ -14,6 +14,8 @@
 #include<iterator>
 #include<vector>
 #include"Comarca.h"
+#include<map>
+#include<set>
 
 using namespace std;
 //pre:cert
@@ -97,29 +99,50 @@ unsigned LlegeixCodi(vector<Comarca> comarques,unsigned &codi) {
 	return codi;
 }
 
+void llegeixComarques(map<unsigned, Comarca> &vComarques){
+	unsigned codi;
+	string nom, capital;
+	do
+	{
+		cin >> codi;
+		if (codi == 0)break;
+		cin.ignore(100, '\n');
+		getline(cin, nom);
+		getline(cin, capital);
+		Comarca comarca(codi, nom, capital);
+		vComarques.insert(pair<unsigned, Comarca>(codi, comarca));
+	} while (true);
+	}
+
+void llegeixCims(map<unsigned, Comarca> &vComarques) {
+	unsigned codi;
+	string nom, capital;
+	do
+	{
+		cin >> codi;
+		if (codi == 0)break;
+		cin.ignore(100, '\n');
+		getline(cin, nom);
+		getline(cin, capital);
+		Comarca comarca(codi, nom, capital);
+		vComarques.insert(pair<unsigned, Comarca>(codi, comarca));
+	} while (true);
+}
+
 //MAIN
 int main()
 {
 	vector<Comarca>vComarques;
 	vector<Comarca>::iterator vIt;
-
-	Comarca comarca;
-	while (comarca.llegirComarca())
+	map<unsigned, Comarca> vComarques1;
+	map<unsigned, Comarca>::iterator it;
+	llegeixComarques(vComarques1);
+	for ( it = vComarques1.begin(); it != vComarques1.end(); it++)
 	{
-		if (comarca.getCodi() >= vComarques.size()) {
-			vComarques.resize(comarca.getCodi() + 1);
-		};
-		int capacity2 = vComarques.capacity();
-	     vComarques[comarca.getCodi()] = comarca;
-	}
-	for (auto l : vComarques) {
-		if (l.getCodi()!=0)
-		{
-		l.mostrarComarca();
-		cout << endl;
-		}
+		it->second.mostrarComarca();
 	}
 //////////////////////////////////////////////////////////////
+	/*
 	list<Refugi> listRefugis;//llista de refugis
 	list<Refugi> ::iterator itRef;//iterador per la llista de refugis
 	list<Cim> listCims;//llista cims
@@ -196,6 +219,7 @@ int main()
 		}
 			
     std::cout << "Done!\n"; 
+	*/
 	return EXIT_SUCCESS;
 }
 

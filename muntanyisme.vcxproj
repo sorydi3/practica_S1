@@ -155,6 +155,7 @@
     <ClInclude Include="Comarca.h" />
     <ClInclude Include="Coordenada.h" />
     <ClInclude Include="Refugi.h" />
+    <ClInclude Include="Travessa.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Cim.cpp" />
@@ -162,6 +163,7 @@
     <ClCompile Include="Coordenada.cpp" />
     <ClCompile Include="muntanyisme.cpp" />
     <ClCompile Include="Refugi.cpp" />
+    <ClCompile Include="Travessa.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

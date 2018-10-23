@@ -9,7 +9,7 @@ class Comarca
 {
 public:
 	Comarca();//constructor
-	bool llegirComarca();//pre:--,post:llegeix una comarca en teclat 
+	Comarca(unsigned codi, string nom, string capital);
 	void mostrarComarca()const;//pre:--,post:mostra *this comarca
 	bool operator ==(const Comarca &c);
 	unsigned getCodi()const;//pre:--,post:retorna el codi
