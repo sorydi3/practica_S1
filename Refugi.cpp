@@ -10,21 +10,21 @@ Refugi::Refugi()
 	_codi = 0;
 }
 
-Refugi::Refugi(std::string nom, unsigned alcada, float longi,float lat, string telef,unsigned codi)
+Refugi::Refugi(std::string nom, unsigned alcada,Coordenada coordenada,string telef)
 {
 	_nom = nom;
 	_alcada =alcada;
 	_tlf = telef;
-	_codi = codi;
+	_coordenades = coordenada;
 }
 
-void Refugi::mostrar(const vector<Comarca> comarques) const
+void Refugi::mostrar(map<unsigned,Comarca> comarques) const
 {
 	//) Tel: 619 239 860 Comarca: 14(Berguedà)
 
 	std::cout << _nom << ": (" << _alcada << "m)";
 	_coordenades.mostrarCordenada();
-		cout<< " Tel: " <<_tlf <<"  Comarca: "<<_codi<<"( "<<comarques[_codi].getNom()<<")"<< endl;
+		cout<< " Tel: " <<_tlf <<"  Comarca: "<<_codi<<"( "<<comarques.find(_codi)->second.getNom()<<")"<< endl;
 }
 
 void Refugi::llegir()

@@ -40,7 +40,7 @@ void mostrar(T &list, G &it,H type,C comarques) {
 template <typename T, typename G, typename H>
 void mostrar_c(T &list, G &it, H type) {
 	for (it = list.begin(); it != list.end(); it++) {
-		type = *it;
+		type = it->second;
 		if(type.getCodi()!=0)
 	    type.mostrarComarca();
 	}
@@ -54,40 +54,41 @@ double distancia(float lon1,float lat1,float lon2 ,float lat2) {
 }
 //pre:cert
 //post:retorna refugi   si nom existeix en la llista de refugis
-Refugi cerca(string nom, bool &trobat, list<Refugi> refugis) {
+Refugi cerca(string nom, bool &trobat, set<Refugi> refugis) {
 	cout << "Cercan Refugi ..." << endl;
-	list<Refugi>::iterator it = refugis.begin();
+	set<Refugi>::iterator it = refugis.begin();
 	Refugi refugi;
 	while (it!=refugis.end() && !trobat)
 	{
 		refugi = *it;
 		if (refugi.getNom() == nom)trobat = true;
-		it++;
+		else it++;
 	}
 	return refugi;
 }
 
 //pre:--
 //post:mostra distància en línia recta a tots els cims que hi hagi a la llista de cims
-void distanciaCims(list<Cim>list, Refugi refugi) {
+void distanciaCims(set<Cim>list, Refugi refugi) {
 	for (auto l : list) {
 		cout <<"                                 "<< l.getNom() << " a " <<refugi.getCoordenada()-l.getCoordenada()<< " metres" << endl;
 	}
 }
 
-unsigned LlegeixCodi(vector<Comarca> comarques,unsigned &codi) {
+unsigned LlegeixCodi(map<unsigned,Comarca> comarques,unsigned &codi) {
 	//pre:--
 	//post:retorna un codi existen dintre del vector comarques
 	cout << "Entra el codi" << endl;
-	vector<Comarca>::iterator vIt;
+	map<unsigned, Comarca>::iterator vIt;
 	cin >> codi;
 	Comarca comarca;
 	comarca.afegeixCodi(codi);
 	bool trobat = false;
 	while (!trobat)
 	{
-		vIt = find(comarques.begin(), comarques.end(),comarca);
-		if (vIt != comarques.end())trobat = true;
+		//vIt = find(comarques.begin(), comarques.end(),pair<unsigned, );
+	    auto t = comarques.find(codi);
+		if (t != comarques.end())trobat = true;
 		else if (codi == 0)return 0;//termina bucle cim
 		else
 		{
@@ -114,26 +115,38 @@ void llegeixComarques(map<unsigned, Comarca> &vComarques){
 	} while (true);
 	}
 
-void llegeixCims(map<unsigned, Comarca> &vComarques) {
-	unsigned codi;
-	string nom, capital;
-	do
-	{
-		cin >> codi;
-		if (codi == 0)break;
-		cin.ignore(100, '\n');
+Cim llegeixCim() {
+	string nom;
+	unsigned alcada;
+	Coordenada coordenada;
+		std::cin.ignore(100, '\n');
 		getline(cin, nom);
-		getline(cin, capital);
-		Comarca comarca(codi, nom, capital);
-		vComarques.insert(pair<unsigned, Comarca>(codi, comarca));
-	} while (true);
+		cin >> alcada;
+		coordenada.llegirCoordenada();
+		Cim cim(nom, alcada, coordenada);
+		return cim;
+}
+
+Refugi llegeixRefugi() {
+	string nom;
+	unsigned alcada;
+	string tlf;
+	Coordenada coordenada;
+	std::cin.ignore(100, '\n');
+	getline(cin, nom);
+	cin >> alcada;
+	coordenada.llegirCoordenada();
+	std::cin.ignore(100, '\n');
+	getline(cin, tlf);
+	Refugi refugi(nom, alcada, coordenada,tlf);
+	return refugi;
 }
 
 //MAIN
 int main()
 {
-	vector<Comarca>vComarques;
-	vector<Comarca>::iterator vIt;
+	//vector<Comarca>vComarques;
+	//vector<Comarca>::iterator vIt;
 	map<unsigned, Comarca> vComarques1;
 	map<unsigned, Comarca>::iterator it;
 	llegeixComarques(vComarques1);
@@ -142,11 +155,11 @@ int main()
 		it->second.mostrarComarca();
 	}
 //////////////////////////////////////////////////////////////
-	/*
-	list<Refugi> listRefugis;//llista de refugis
-	list<Refugi> ::iterator itRef;//iterador per la llista de refugis
-	list<Cim> listCims;//llista cims
-	list<Cim>:: iterator itCim;
+	
+	set<Refugi> listRefugis;//llista de refugis
+	set<Refugi> ::iterator itRef;//iterador per la llista de refugis
+	set<Cim> listCims;//llista cims
+	set<Cim>:: iterator itCim;
 	string opcio;
 	std::cin >> opcio;
 	unsigned codi;
@@ -155,37 +168,34 @@ int main()
 		if (opcio=="cim")
 		{
 			
-			Cim cim;
-			llegir(cim);
-			while (LlegeixCodi(vComarques,codi) != 0)
+			Cim cim=llegeixCim();
+			
+			while (LlegeixCodi(vComarques1,codi) != 0)
 			{
 				cim.afegeixCodi(codi);
 			}
-			listCims.push_front(cim);
+			listCims.insert(cim);
 		}else{
-			Refugi refugi;
-			llegir(refugi);
-			LlegeixCodi(vComarques,codi);
+			Refugi refugi = llegeixRefugi();
+			LlegeixCodi(vComarques1,codi);
 			refugi.afegeixCodi(codi);
-			listRefugis.push_front(refugi);
+			listRefugis.insert(refugi);
 		}
 		std::cin >> opcio;
 	}
 	    cout << "COMARQUES" << endl;
 		cout << "============\n";
 		Comarca cmrca;
-		mostrar_c(vComarques, vIt, cmrca);//mostra él vector de comarques
+		mostrar_c(vComarques1, it, cmrca);//mostra él vector de comarques
 		Cim cim;
 		Refugi refugi;
 		cout << "CIMS" << endl;
 		cout << "============\n";
-		listCims.sort();
-		mostrar(listCims, itCim, cim,vComarques);
+		mostrar(listCims, itCim, cim,vComarques1);
 		cout << endl;
 		cout << "REFUGIS" << endl;
 		cout << "============\n";
-		listRefugis.sort();
-		mostrar(listRefugis, itRef, refugi,vComarques);
+		mostrar(listRefugis, itRef, refugi,vComarques1);
 
 		itRef = listRefugis.begin();
 		string nom;
@@ -197,8 +207,8 @@ int main()
 			Refugi refugiCentral=cerca(nom, trobat, listRefugis);
 			if (trobat) {
 				cout << "Nom Refugi:" << endl;
-				refugiCentral.mostrar(vComarques);
-				list<Refugi>::reverse_iterator rit = listRefugis.rbegin();
+				refugiCentral.mostrar(vComarques1);
+				set<Refugi>::reverse_iterator rit = listRefugis.rbegin();
 				Refugi refugiMaxDistancia = *rit;
 				itRef = listRefugis.begin();
 				Refugi refugiMinDistancia = *itRef;
@@ -219,7 +229,7 @@ int main()
 		}
 			
     std::cout << "Done!\n"; 
-	*/
+
 	return EXIT_SUCCESS;
 }
 

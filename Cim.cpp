@@ -8,10 +8,10 @@ Cim::Cim()
 	_alcada = 0;
 }
 
-Cim::Cim(std::string nom, unsigned alcada, float longi, float lat)
+Cim::Cim(std::string nom, unsigned alcada,Coordenada coordenada)
 {
 	_nom = nom;
-	
+	_coordenada = coordenada;
 	_alcada = alcada;
 }
 
@@ -24,7 +24,7 @@ void Cim::mostrar() const
 	cout << endl;
 }
 
-void Cim::mostrar(const vector<Comarca> comarques) const
+void Cim::mostrar(map<unsigned ,Comarca> comarques) const
 {
 	cout << _nom << ": (" << _alcada << "m)";
 	_coordenada.mostrarCordenada();
@@ -33,7 +33,7 @@ void Cim::mostrar(const vector<Comarca> comarques) const
 	}
 	cout << " ( ";
 	for (auto c : _comarques) {
-		cout << comarques[c].getNom() << ", ";
+		cout << comarques.find(c)->second.getNom() << ", ";
 	}
 	cout << " ) " << endl;
 	
@@ -44,14 +44,6 @@ bool Cim::operator<(const Cim & o) const
 	return _nom < o._nom;
 }
 
-void Cim::llegir()
-{
-	std::cin.ignore(100, '\n');
-	getline(cin, _nom);
-	cin >> _alcada;
-	_coordenada.llegirCoordenada();
-
-}
 
 void Cim::afegeixCodi(unsigned codi)
 {

@@ -5,6 +5,7 @@
 #include <string>
 #include<iostream>
 #include<vector>
+#include<map>
 #include"Comarca.h"
 #include"Coordenada.h"
 using namespace std;
@@ -12,8 +13,8 @@ class Refugi
 {
 public:
 	Refugi();//constructor--/pre:-- ;post:cim buid
-	Refugi(std::string nom, unsigned alcada, float longi, float lat, string telef,unsigned codi);
-	void mostrar(const vector<Comarca> comarques)const;//pre:--,post:mostra info de *this
+	Refugi(std::string nom, unsigned alcada,Coordenada coordenada, string telef);
+	void mostrar(map<unsigned,Comarca> comarques)const;//pre:--,post:mostra info de *this
 	void llegir();//pre:--;//post:llegeix info per *this
 	bool operator<(const Refugi & o)const; // pre:--; post:retorna cert si this es menor que o
 	Coordenada getCoordenada()const;//pre:--;post:retorna la longitud

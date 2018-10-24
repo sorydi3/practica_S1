@@ -7,6 +7,7 @@
 #include"Coordenada.h"
 #include"Comarca.h"
 #include<vector>
+#include<map>
 #include<list>
 using namespace std;
 class Cim
@@ -14,9 +15,9 @@ class Cim
 public:
 	//contructor
 	Cim();//pre:-- ;post:cim buid
-	Cim(std::string nom, unsigned alcada, float longi, float lat);
+	Cim(std::string nom, unsigned alcada, Coordenada coordenada);
 	void mostrar()const;//pre:--,post:mostra info de *this
-	void mostrar(const vector<Comarca> comarques)const;
+	void mostrar( map<unsigned,Comarca> comarques)const;
 	bool operator<(const Cim & o)const;//pre:--;post:retorna cert si this es menor que o
 	void llegir();//pre:--;//post:llegeix info per *this
 	void afegeixCodi(unsigned codi);//pre:--,post:ha afegit un codi a la llista de codis
